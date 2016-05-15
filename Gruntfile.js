@@ -1,11 +1,10 @@
-"use strict";
+/* jshint strict:false */
 
 module.exports = function ( grunt ) {
 
     // Project configuration.
     grunt.initConfig( {
         pkg: grunt.file.readJSON( 'package.json' ),
-
         jshint: {
 
             options: {
@@ -14,7 +13,7 @@ module.exports = function ( grunt ) {
             defaults: [
                 "src/**/*.js",
                 'Gruntfile.js'
-            ]
+            ]	   
         },
 
         csslint: {

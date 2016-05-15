@@ -1,0 +1,414 @@
+$font-stack: "Source Sans Pro",Arial,sans-serif;
+$dark-grey: #3C3241;
+$light-grey: #D8D6D9;
+$bg-light:#f1f1f1;
+$pink: #E57373;
+$dark-pink: #733A3A;
+
+@charset "utf-8";
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: 100% $font-stack;
+	line-height: inherit;
+	vertical-align: baseline;
+  	-webkit-touch-callout: none; /* iOS Safari */
+  	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+  	-khtml-user-select: none;    /* Konqueror */
+  	-moz-user-select: none;      /* Firefox */
+  	-ms-user-select: none;       /* Internet Explorer/Edge */
+  	user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	background:$bg-light;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* CSS Document */
+
+input[type="text"] {
+	width: 80%;
+	padding: 15px;
+	border: 1px solid grey;
+	box-sizing: border-box;
+	margin: 20px auto 30px;
+	display: block;
+}
+
+input[type="submit"] {
+	padding: 15px;
+	margin: auto;
+	border: none;
+	background: $pink;
+	display: block;
+	color: white;	
+	cursor:pointer;
+}
+input[type="submit"]:hover {
+	background: $dark-pink;	
+	transition: background-color 222ms ease-out;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+nav {
+	background:$dark-grey;
+	overflow:hidden;
+	height:54px;	
+
+     .logo {
+	padding-top:7px;
+	float:left;
+	display:block;	
+	margin:0 8px;
+     }
+
+     .logo-mobile {
+	display:none;
+     }
+
+}
+
+
+.innerwrap {
+	margin:auto;
+	width:100%;
+	max-width:1350px;
+	overflow: hidden;
+}
+
+
+#infobar {
+	background: $light-grey;
+	font-size: 30px;
+	text-align: center;
+	padding: 23px 0;
+	font-weight: bold;	
+}
+	
+#main {
+	overflow: hidden;
+	padding-top: 30px;
+}
+
+.player1, .player2 {
+	color: $dark-grey;
+	font-weight: normal;
+	width: 35%;
+	display: inline-block;
+	text-align: right;
+	box-sizing: border-box;
+	margin: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.player2 {
+	text-align: left;
+}
+
+.score {
+	width:20%;
+	display:inline-block;
+	text-align:center;
+}
+
+.card {
+	width: 16%;
+	display: inline-block;
+	padding: 3%;
+	box-sizing: border-box;
+	margin: 1% 0.5%;
+	background: #fff;
+	border-bottom: 2px solid #dbdadb;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: $light-grey 0 1px 6px 1px;
+	}
+	img {
+	    width: 100%;
+	}
+}
+
+
+.player2-hand, .player1-hand {
+	text-align: center;
+}
+
+.player2-hand .card {
+	background: $pink;
+	border: none;	
+	box-shadow: none;
+	cursor:default;
+}
+
+.overlay-content {
+	width:80%;    
+	padding-bottom: 50px;
+	background-color:#fff;
+
+	h3 {
+		padding: 30px;
+		font-size: 30px;
+		text-align: center;
+		color: grey;
+	}
+	form span {
+		text-align: center;
+		color: red;
+		margin: 20px auto;
+		width: 80%;
+		display: block;
+	}
+}
+
+
+
+
+.rpsls-help {
+	background:url('../images/RPSLS-help.png') center center #fff no-repeat; 
+	width:963px; 
+	height:848px; 
+	background-size: contain;
+}
+
+.rps-help {
+	background:url('../images/RPS-help.png') center center #fff no-repeat; 
+	width:560px; 
+	height:540px; 
+	background-size: contain;
+}
+
+#history {
+	background-color: $dark-grey;
+	color: #F0ECE6;
+	position: absolute;
+	bottom:0;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	display: none;
+	white-space:nowrap;
+	li {
+		display:inline-block;
+		width: 40px;
+		margin: 0;
+	}
+	li .won {
+		opacity: 1;
+	}
+
+	li img {
+		width: 100%;
+		display: block;
+		margin: 0;
+		padding: 5px;
+		box-sizing: border-box;
+		opacity: 0.3;
+	}
+
+	&.hidden-history, 
+	&.hidden-history li {
+		height:0;
+		padding:0;
+	}
+
+	&.hidden-history li img {
+		display:none;
+	}
+}
+
+.result {    
+	text-align: center;
+	font-size: 30px;
+	font-weight: normal;
+	margin: 20px;
+	color: $pink;
+}
+
+.select-hand {
+	background: $dark-grey;
+}
+
+
+#mainmenu {
+	color: #F0ECE6;
+	float: right;
+
+	li {
+		float: left;
+		padding: 10px;
+		cursor: pointer;
+		margin: 8px;
+
+		a {
+		    	transition-duration: 222ms;
+			line-height:20px;
+		}
+
+		a:hover {
+			color:#B1ADB3;
+		}
+		a.switch {
+			border: 1px solid $pink;
+			color: #FFF;
+			border-radius: 2px;
+			padding: 10px;
+		}
+
+		a.switch:hover {
+			background:$pink;
+			color: #fff;
+		}
+	}
+}
+
+
+.overlay {
+	width: 100%;
+	height: 100%;
+  	background: $dark-grey;
+	background: rgba(0,0,0,0.75);
+	position: absolute;
+	z-index: 1;
+}
+
+.close {
+	color: white;
+	font-size: 30px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-family: cursive, sans;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+}
+
+.close:hover {
+	color:$light-grey;
+}
+
+.overlay div {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%); /* Safari and Chrome */
+	-moz-transform: translate(-50%, -50%); /* Firefox */
+	-ms-transform: translate(-50%, -50%); /* IE 9 */
+	-o-transform: translate(-50%, -50%); /* Opera */
+	transform: translate(-50%, -50%);
+	 max-width: 80%;
+	max-height: 80%;
+}
+
+.history-show {
+	position: absolute;
+	font-size: 10px;
+	top: -30px;
+	background: $dark-grey;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.burger-menu {
+	display: none;
+	float: none;
+	color: #fff;
+	height: auto;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 17px;
+	text-align: right;
+}
+
+@media only screen and (max-width: 1023px) {
+	nav {
+		overflow: visible;
+		position: relative;
+	}
+	#mainmenu {
+		background: $dark-grey;
+		li {
+		    float: none;
+		    display:none;
+		}
+	}
+	.burger-menu {
+		display: block;	
+	}
+	.switch {
+		display: block;
+	}
+}
+
+
+@media only screen and (max-width: 479px) {
+	
+	nav {
+		.logo {
+			display:none;
+		}
+		.logo-mobile {		
+			padding-top:7px;
+			float:left;
+			display:block;	
+			margin:0 8px;
+		}
+	}
+	.player1, .player2 {
+		width:100%;
+		display:block;
+		text-align:center;
+	}
+	.card {
+    		width: 26%;
+	}
+}
