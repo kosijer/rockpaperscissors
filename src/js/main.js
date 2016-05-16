@@ -71,7 +71,7 @@ function initStart() {
 		} else {
 			$(this).html('Player vs Computer');
 			$('.restart-game').click();
-			var autoPlay = setInterval(computerVsComputer, 1300);				
+			autoPlay = setInterval(computerVsComputer, 1300);				
 		}
 		computerPlays = !computerPlays;
 	});
