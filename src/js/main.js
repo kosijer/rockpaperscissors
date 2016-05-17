@@ -8,11 +8,13 @@ var p1name = "Computer"; // Initial names of both player
 var p2name = "Human";
 var numberOfHands = 3; // The initial number of options - rock, paper, scossors
 var resetView;
-var player1result = ""; // null values for the score
-var player2result = "";
+var player1result = null; // null values for the score
+var player2result = null;
 var gamesPlayed = 0; // total number of games played
 var computerPlays = false; // auto-play mode on-off (computer vs computer)
-
+var autoPlay; // Define interval variable
+var p1stat = []; // Define empty Statistics
+var p2stat = [];
 
 // Function for setting up the initial values and binding the event handlers
 function initStart() {
@@ -45,9 +47,13 @@ function initStart() {
 		$('.p2score').html(p2score);
 		$('#history li').remove();
 		$('#history').hide();
+		for(var n=0; n < 5;  n++) {
+			p1stat[hand[n]] = undefined;
+			p2stat[hand[n]] = undefined;
+		}
 	});
 	
-	//  Restarting the game 
+	//  Change Names Form 
 	$('.change-names').click(function(){
 		$('.overlay>div.overlay-content').remove();
 		var nameForm = '<div class="overlay-content">'+
@@ -55,25 +61,57 @@ function initStart() {
 						'<form id="namesForm">'+
 							'<input type="text" name="changep1" placeholder="Change the name of player 1 (currently: '+p1name+')"/>'+
 							'<input type="text" name="changep2"  placeholder="Change the name of player 2 (currently: '+p2name+')"/>'+
-							'<input type="submit" value="Change Names" action="changeNames()" />'+
-							'<span>Sorry, this part hasn\'t been finished :(</span>'+
+							'<input type="submit" value="Change Names" />'+
 						'</form>'+
 					'</div>';
-		$('.overlay').fadeIn(100).append(nameForm);		
+
+		$('.overlay').fadeIn(100).append(nameForm);
+
+		$('#namesForm').submit(function(e){
+			if($('input[name="changep1"]').val()){
+				p1name = $( $.parseHTML( $('input[name="changep1"]').val() ) ).text();
+			}
+			if($('input[name="changep2"]').val()){
+				p2name = $( $.parseHTML( $('input[name="changep2"]').val() ) ).text(); 
+			}
+			$('.player1').html(p1name);
+			$('.player2').html(p2name);
+			$('.overlay').fadeOut(100);
+			e.preventDefault();
+		});		
 	});
-	
+
+
+
+
 	// Turn on-off auto-play mode	
 	$('.vs-cpu').click(function(){
 		if(computerPlays) { 
-			$(this).html('Computer vs Computer');
+			$(this).html('CPU vs CPU');
 			$('.restart-game').click();
 			clearInterval(autoPlay);
 		} else {
-			$(this).html('Player vs Computer');
+			$(this).html('Player vs CPU');
 			$('.restart-game').click();
 			autoPlay = setInterval(computerVsComputer, 1300);				
 		}
 		computerPlays = !computerPlays;
+	});
+	
+	// Shows Statistics
+	$('.stats').click(function(){
+		$('.overlay>div.overlay-content').remove();
+		$('.overlay').append("<div class='overlay-content statistics'><h3>Total matches: "+ gamesPlayed + "</h3><br/><br/></div>");
+		
+		for(var n=0; n < numberOfHands;  n++) {
+			if(p1stat[hand[n]] === undefined) {p1stat[hand[n]] = 0;}
+			if(p2stat[hand[n]] === undefined) {p2stat[hand[n]] = 0;}
+			$('.overlay-content').append("<p>" + p1name + " : " + p1stat[hand[n]] + " x " + hand[n] + "</p>");
+			$('.overlay-content').append("<p>" + p2name + " : " + p2stat[hand[n]] + " x " + hand[n] + "</p>");
+		}
+		
+		$('.overlay').fadeIn(100);
+		
 	});
 	
 	// Small help menu that calls the rule of the current game
@@ -100,8 +138,8 @@ function initStart() {
 	
 	// Burger Menu in mobile view
 	$('.burger-menu').click(function(){
-		$('ul#mainmenu li').toggle();
-		$('ul#mainmenu li').addClass('mobile-menu');	
+		$('.mainmenu li').toggle();
+		$('.mainmenu li').addClass('mobile-menu');	
 		$('li.mobile-menu').click(function(){
 			$('li.mobile-menu').hide();	
 			$('.mobile-menu').removeClass('mobile-menu');		
@@ -130,6 +168,18 @@ function compareResults(yourChoice) {
 	var computer = computersChoice();
 	$('.player2-hand .card img').attr('src','./images/'+computer+'.png');
 	
+	if(p1stat[computer] === undefined) { 
+		p1stat[computer] = 1; 
+	} else { 
+		p1stat[computer]++; 
+	}
+
+	if(p2stat[yourChoice] === undefined) { 
+		p2stat[yourChoice] = 1; 
+	} else { 
+		p2stat[yourChoice]++; 
+	}
+
 	if (yourChoice == computer) 
 	{
 		tie();
@@ -181,14 +231,14 @@ function tie() {
 
 // Adding the history state
 function updateHistory(player2s, player1s) {
-	$('ul#history').fadeIn(100);
+	$('.history').fadeIn(100);
 	gamesPlayed++;
-	var list_width = $('ul#history li').width(); 
-	var list_size = $('ul#history li').length + 2; 
+	var list_width = $('.history li').width(); 
+	var list_size = $('.history li').length + 2; 
 	
-	if(list_width * list_size > $('ul#history').innerWidth()) {$('ul#history li:nth-child(2)').remove();}
+	if(list_width * list_size > $('.history').innerWidth()) {$('.history li:nth-child(2)').remove();}
 	
-	$('ul#history').append('<li>'+
+	$('.history').append('<li>'+
 					'<img class="historyp1 '+player1result+'" src="images/'+player1s+'.png">'+
 					'<img class="historyp2 '+player2result+'" src="images/'+player2s+'.png">'+
 				'</li>');
@@ -203,7 +253,8 @@ function computerVsComputer() {
 // Calling the initial function once the page is loaded.
 $(document).ready(function(){ initStart(); });
 
+// Clears the History bar because it overflows the document width. It can be done with similar calculation as above
 $(window).resize(function(){
-	$('ul#history').hide();
-	$('ul#history li').remove();
+	$('.history').hide();
+	$('.history li').remove();
 });

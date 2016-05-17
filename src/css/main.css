@@ -102,14 +102,14 @@ nav {
   max-width: 1350px;
   overflow: hidden; }
 
-#infobar {
+.infobar {
   background: #D8D6D9;
   font-size: 30px;
   text-align: center;
   padding: 23px 0;
   font-weight: bold; }
 
-#main {
+.main {
   overflow: hidden;
   padding-top: 30px; }
 
@@ -172,6 +172,13 @@ nav {
     width: 80%;
     display: block; }
 
+.statistics p {
+  width: 20%;
+  display: inline-block;
+  margin: 5px 15%;
+  text-transform: capitalize;
+  max-width: 200px; }
+
 .rpsls-help {
   background: url("../images/RPSLS-help.png") center center #fff no-repeat;
   width: 963px;
@@ -184,7 +191,7 @@ nav {
   height: 540px;
   background-size: contain; }
 
-#history {
+.history {
   background-color: #3C3241;
   color: #F0ECE6;
   position: absolute;
@@ -194,23 +201,23 @@ nav {
   box-sizing: border-box;
   display: none;
   white-space: nowrap; }
-  #history li {
+  .history li {
     display: inline-block;
     width: 40px;
     margin: 0; }
-  #history li .won {
+  .history li .won {
     opacity: 1; }
-  #history li img {
+  .history li img {
     width: 100%;
     display: block;
     margin: 0;
     padding: 5px;
     box-sizing: border-box;
     opacity: 0.3; }
-  #history.hidden-history, #history.hidden-history li {
+  .history.hidden-history, .history.hidden-history li {
     height: 0;
     padding: 0; }
-  #history.hidden-history li img {
+  .history.hidden-history li img {
     display: none; }
 
 .result {
@@ -223,25 +230,25 @@ nav {
 .select-hand {
   background: #3C3241; }
 
-#mainmenu {
+.mainmenu {
   color: #F0ECE6;
   float: right; }
-  #mainmenu li {
+  .mainmenu li {
     float: left;
     padding: 10px;
     cursor: pointer;
-    margin: 8px; }
-    #mainmenu li a {
+    margin: 8px 4px; }
+    .mainmenu li a {
       transition-duration: 222ms;
       line-height: 20px; }
-    #mainmenu li a:hover {
+    .mainmenu li a:hover {
       color: #B1ADB3; }
-    #mainmenu li a.switch {
+    .mainmenu li a.switch {
       border: 1px solid #E57373;
       color: #FFF;
       border-radius: 2px;
       padding: 10px; }
-    #mainmenu li a.switch:hover {
+    .mainmenu li a.switch:hover {
       background: #E57373;
       color: #fff; }
 
@@ -308,9 +315,9 @@ nav {
     overflow: visible;
     position: relative; }
 
-  #mainmenu {
+  .mainmenu {
     background: #3C3241; }
-    #mainmenu li {
+    .mainmenu li {
       float: none;
       display: none; }
 

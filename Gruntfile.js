@@ -11,8 +11,7 @@ module.exports = function ( grunt ) {
                 jshintrc: ".jshintrc"
             },
             defaults: [
-                "src/**/*.js",
-                'Gruntfile.js'
+                "src/**/*.js"
             ]	   
         },
 

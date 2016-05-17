@@ -121,7 +121,7 @@ nav {
 }
 
 
-#infobar {
+.infobar {
 	background: $light-grey;
 	font-size: 30px;
 	text-align: center;
@@ -129,7 +129,7 @@ nav {
 	font-weight: bold;	
 }
 	
-#main {
+.main {
 	overflow: hidden;
 	padding-top: 30px;
 }
@@ -207,8 +207,13 @@ nav {
 	}
 }
 
-
-
+.statistics p {
+    width: 20%;
+    display: inline-block;
+    margin: 5px 15%;
+    text-transform: capitalize;
+    max-width: 200px;
+}
 
 .rpsls-help {
 	background:url('../images/RPSLS-help.png') center center #fff no-repeat; 
@@ -224,7 +229,7 @@ nav {
 	background-size: contain;
 }
 
-#history {
+.history {
 	background-color: $dark-grey;
 	color: #F0ECE6;
 	position: absolute;
@@ -276,7 +281,7 @@ nav {
 }
 
 
-#mainmenu {
+.mainmenu {
 	color: #F0ECE6;
 	float: right;
 
@@ -284,7 +289,7 @@ nav {
 		float: left;
 		padding: 10px;
 		cursor: pointer;
-		margin: 8px;
+		margin: 8px 4px;
 
 		a {
 		    	transition-duration: 222ms;
@@ -374,7 +379,7 @@ nav {
 		overflow: visible;
 		position: relative;
 	}
-	#mainmenu {
+	.mainmenu {
 		background: $dark-grey;
 		li {
 		    float: none;
